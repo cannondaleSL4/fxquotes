@@ -1,10 +1,12 @@
 package com.dim.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by dima on 19.11.17.
  */
+@Component
 public class RouteFilter extends ZuulFilter {
     @Override
     public String filterType() {
