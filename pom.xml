@@ -11,6 +11,7 @@
     <modules>
         <module>angular</module>
         <module>entity</module>
+        <module>identity</module>
     </modules>
 
 
