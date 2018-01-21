@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS userapp (
+CREATE TABLE IF NOT EXISTS USERAPP (
   id_client integer not null auto_increment,
   name VARCHAR(45) NOT NULL UNIQUE,
   password VARCHAR(45) NOT NULL,
