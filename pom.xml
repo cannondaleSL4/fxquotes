@@ -12,6 +12,7 @@
         <module>angular</module>
         <module>entity</module>
         <module>identity</module>
+        <module>gateway</module>
     </modules>
 
 
