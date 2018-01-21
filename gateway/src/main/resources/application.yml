@@ -12,7 +12,12 @@ spring:
 
 zuul:
   routes:
+    identity:
+      path: /identity/**
+      url: http://localhost:9099
+
     request:
       path: /request/**
       url: http://localhost:9098
       #stripPrefix: false
+
