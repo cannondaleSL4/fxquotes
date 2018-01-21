@@ -41,8 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/employee/**").access("hasRole('EMPLOYEE')")
-                .antMatchers("/customer/**").access("hasRole('USER')")
+                .antMatchers("/owner/**").access("hasRole('OWNER')")
+                .antMatchers("/user/**").access("hasRole('USER')")
                 .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
                 .usernameParameter("username").passwordParameter("password")
                 .and().csrf()
