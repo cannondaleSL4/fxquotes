@@ -16,8 +16,8 @@ public class User {
     @Id
     @GeneratedValue
     private int id;
-    @JoinColumn(name = "name")
-    String name;
+    @JoinColumn(name = "email")
+    String email;
     @JoinColumn(name = "password")
     String password;
     @Enumerated(EnumType.STRING)
