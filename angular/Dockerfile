@@ -9,7 +9,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY dist/ /usr/share/nginx/html
 
 
-EXPOSE 90
+EXPOSE 80
 
 
 STOPSIGNAL SIGTERM
