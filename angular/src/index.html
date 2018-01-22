@@ -8,6 +8,12 @@
 
   <title>Signin Template for Bootstrap</title>
 
+  <script>
+    System
+      .import('main.ts')
+      .catch(console.error.bind(console));
+  </script>
+
   <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="./assets/css/signin.css" rel="stylesheet">
   <link href="./assets/css/signinnew.css" rel="stylesheet">
@@ -15,28 +21,5 @@
 
 </head>
 
-<body class="text-center">
-  <form class="form-signin" method="post" action="/login">
-    <img class="mb-4" src="./assets/img/d.ico" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-    <a class="btn btn-social-icon btn-lg btn-twitter" href="/login/twitter" ><i class="fa fa-twitter"></i></a>
-    <a class="btn btn-social-icon btn-lg btn-dropbox" href = "/login/dropbaox"><i class="fa fa-dropbox"></i></a>
-    <a class="btn btn-social-icon btn-lg btn-facebook" href="/login/facebook"><i class="fa fa-facebook"></i></a>
-    <a class="btn btn-social-icon btn-lg btn-github" href="/login/github"><i class="fa fa-github"></i></a>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-  </form>
-
-</body>
+<app-root></app-root>
 </html>
