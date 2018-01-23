@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         userList.forEach(K ->{
             try {
                 auth.inMemoryAuthentication()
-                        .withUser(K.getName()).password(K.getPassword()).roles(K.getRole().toString().toUpperCase());
+                        .withUser(K.getEmail()).password(K.getPassword()).roles(K.getRole().toString().toUpperCase());
             } catch (Exception e) {
                 e.printStackTrace();
             }
