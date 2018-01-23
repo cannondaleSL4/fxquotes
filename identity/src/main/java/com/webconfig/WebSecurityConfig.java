@@ -4,6 +4,7 @@ import com.entity.User;
 import com.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebSecurity
+@Order(1000)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -44,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/owner/**").access("hasRole('OWNER')")
                 .antMatchers("/user/**").access("hasRole('USER')")
                 .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
-                .usernameParameter("username").passwordParameter("password")
+                .usernameParameter("inputEmail").passwordParameter("inputPassword")
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
 
