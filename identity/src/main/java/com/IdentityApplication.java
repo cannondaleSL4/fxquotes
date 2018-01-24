@@ -17,6 +17,5 @@ public class IdentityApplication {
     @Bean
     public CustomSuccessHandler getCustomSuccessHandler(){
         return new CustomSuccessHandler();
-
     }
 }
