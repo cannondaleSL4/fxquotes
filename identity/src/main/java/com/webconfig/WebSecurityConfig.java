@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/owner/**").access("hasRole('OWNER')")
                 .antMatchers("/user/**").access("hasRole('USER')")
-                .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
+                .and().formLogin().loginPage("/auth").successHandler(customSuccessHandler)
                 .usernameParameter("inputEmail").passwordParameter("inputPassword")
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");

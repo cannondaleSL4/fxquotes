@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by dima on 21.01.18.
  */
-@EnableOAuth2Sso
-@RestController
+//@EnableOAuth2Sso
+//@RestController
 public class SocialAuth extends WebSecurityConfigurerAdapter {
 
     @Override
