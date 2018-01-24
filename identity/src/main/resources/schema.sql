@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS USERAPP (
   email VARCHAR(320) NOT NULL UNIQUE,
   password VARCHAR(45) NOT NULL,
   user_group VARCHAR(45) NOT NULL,
-  CHECK (user_group IN ('owner','user'))
+  CHECK (user_group IN ('OWNER','USER'))
 );

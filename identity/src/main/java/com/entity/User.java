@@ -1,7 +1,6 @@
 package com.entity;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -9,13 +8,16 @@ import javax.persistence.*;
  * Created by dima on 21.01.18.
  */
 @Entity
-@Table(name = "USERAPP")
-@Builder
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Table(name = "USERAPP")
 public class User {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @JoinColumn(name = "email")
     String email;
     @JoinColumn(name = "password")
