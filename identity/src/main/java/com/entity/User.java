@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by dima on 21.01.18.
  */
 @Entity
-@Table(name = "userapp")
+@Table(name = "USERAPP")
 @Builder
 @Getter
 public class User {
