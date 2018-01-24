@@ -18,10 +18,11 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
-    @JoinColumn(name = "email")
+    @Column(name = "email")
     String email;
-    @JoinColumn(name = "password")
+    @Column(name = "password")
     String password;
     @Enumerated(EnumType.STRING)
+    @Column(nullable=false, length=8,name = "user_group")
     Role role;
 }
