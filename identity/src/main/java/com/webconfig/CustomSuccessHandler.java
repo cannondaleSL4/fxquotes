@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**https://sdqali.in/blog/2016/07/20/csrf-protection-with-spring-security-and-angular-js/
- * Created by  lisa on 30.12.17.
+ * Created by  dima on 30.12.17.
  */
 @Component
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
