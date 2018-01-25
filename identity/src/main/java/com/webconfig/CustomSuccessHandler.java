@@ -64,7 +64,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     }
 
     private boolean isOwner(List<String> roles) {
-        if (roles.contains("ROLE_EMPLOYEE")) {
+        if (roles.contains("ROLE_OWNER")) {
             return true;
         }
         return false;
