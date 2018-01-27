@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class IdentityApplication {
     public static void main(String[] args) {
-        SpringApplication.run(IdentityApplication.class, args);
+        SpringApplication.run(IdentityApplication.class, args) ;
     }
 
     @Bean
