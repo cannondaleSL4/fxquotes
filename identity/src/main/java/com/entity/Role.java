@@ -26,9 +26,6 @@ public class Role implements GrantedAuthority, Comparable<Role> {
     @Column(name = "rolename")
     private String role;
 
-    @ManyToOne
-    private User user;
-
     @Override
     public String getAuthority() {
         return this.role;
