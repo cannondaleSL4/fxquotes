@@ -1,7 +1,11 @@
+CREATE TABLE IF NOT EXISTS USERROLE (
+  id_role integer PRIMARY KEY AUTO_INCREMENT,
+  rolename VARCHAR(10) NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS USERAPP (
-  id integer not null auto_increment,
-  email VARCHAR(320) NOT NULL UNIQUE,
+  id integer PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(320) NOT NULL,
   password VARCHAR(45) NOT NULL,
-  user_group VARCHAR(45) NOT NULL,
-  CHECK (user_group IN ('OWNER','USER'))
+  id_role integer, FOREIGN KEY (id_role) REFERENCES USERROLE (id_role)
 );

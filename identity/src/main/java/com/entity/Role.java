@@ -1,20 +1,44 @@
 package com.entity;
 
+import lombok.*;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.springframework.security.core.GrantedAuthority;
+
+import javax.persistence.*;
+
 /**
  * Created by dima on 21.01.18.
  */
-public enum Role {
-    OWNER("OWNER"),
-    USER("USER");
+@Entity
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Table(name ="USERROLE")
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
+public class Role implements GrantedAuthority, Comparable<Role> {
 
-    private final String text;
+    @Id
+    @GeneratedValue
+    private Integer id_role;
 
-    private Role(final String text) {
-        this.text = text;
+    @Column(name = "rolename")
+    private String role;
+
+    @ManyToOne
+    private User user;
+
+    @Override
+    public String getAuthority() {
+        return this.role;
     }
 
     @Override
-    public String toString() {
-        return text;
+    public int compareTo(Role o) {
+        if (this.role.equals("ADMIN"))return 1;
+        else if(o.role.equals("ADMIN"))return 0;
+
+        return this.role.compareTo(o.getRole());
     }
 }
