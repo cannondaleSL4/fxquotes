@@ -29,8 +29,8 @@ public class User {
     @Column(name = "password")
     String password;
 
-    //@Column(name = "rolename")
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="rolename")
     private final List<Role> roles = new ArrayList<>();
 
     public List<Role> getRoles() {
