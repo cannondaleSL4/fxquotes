@@ -4,8 +4,13 @@ CREATE TABLE IF NOT EXISTS USERROLE (
 );
 
 CREATE TABLE IF NOT EXISTS USERAPP (
-  id integer PRIMARY KEY AUTO_INCREMENT,
+  id_user integer PRIMARY KEY AUTO_INCREMENT,
   email VARCHAR(320) NOT NULL,
-  password VARCHAR(45) NOT NULL,
-  id_role integer, FOREIGN KEY (id_role) REFERENCES USERROLE (id_role)
+  password VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS USER_ROLE(
+  id_user_role integer PRIMARY KEY AUTO_INCREMENT,
+  id_role integer, FOREIGN KEY (id_role) REFERENCES USERROLE (id_role),
+  id_user integer, FOREIGN KEY (id_user) REFERENCES USERAPP (id_user)
 );

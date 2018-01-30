@@ -20,7 +20,7 @@ import javax.persistence.*;
 public class Role implements GrantedAuthority, Comparable<Role> {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idRole;
 
     @Column(name = "rolename")

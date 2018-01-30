@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
 public class User {
     @Id
-    @GeneratedValue
+    @Column(name= "id_user")
     private Integer id;
 
     @Column(name = "email")
@@ -31,9 +31,12 @@ public class User {
     @Column(name = "password")
     String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    //@JoinTable(name="rolename" , joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "id_role"))
-    @JoinColumn(name="idRole", referencedColumnName = "id_role")
+    @OneToMany
+    @JoinTable(
+            name = "USER_ROLE",
+            joinColumns = { @JoinColumn(name="id_user",referencedColumnName="id_user")},
+            inverseJoinColumns = { @JoinColumn(name="id_role",referencedColumnName="id_role",unique=true)}
+    )
     private Collection<Role> roles = new ArrayList<>();
 
     public List<Role> getRoles() {
