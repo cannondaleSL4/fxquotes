@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import java.util.List;
 
-/** http://www.java2s.com/Tutorials/Java/JPA/0820__JPA_OneToMany_Unidirectional.htm
+/*
  * Created by  dima on 29.12.17.
  */
 @Configuration
