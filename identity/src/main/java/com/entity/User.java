@@ -31,7 +31,7 @@ public class User {
     @Column(name = "password")
     String password;
 
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name = "USER_ROLE",
             joinColumns = { @JoinColumn(name="id_user",referencedColumnName="id_user")},
