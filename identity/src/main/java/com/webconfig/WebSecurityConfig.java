@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * Created by  dima on 29.12.17.
@@ -33,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         userList.forEach(K ->{
             try {
                 auth.inMemoryAuthentication()
-                        .withUser(K.getEmail()).password(K.getPassword()).roles(K.getRoles().get(0).toString().toUpperCase());
+                        .withUser(K.getEmail()).password(K.getPassword()).roles(K.getRoles().stream().collect(Collectors.toList()).get(0).toString().toUpperCase());
             } catch (Exception e) {
                 e.printStackTrace();
             }

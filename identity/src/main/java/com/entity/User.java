@@ -4,10 +4,8 @@ import lombok.*;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by dima on 21.01.18.
@@ -37,9 +35,9 @@ public class User {
             joinColumns = { @JoinColumn(name="id_user",referencedColumnName="id_user")},
             inverseJoinColumns = { @JoinColumn(name="id_role",referencedColumnName="id_role",unique=true)}
     )
-    private Collection<Role> roles = new ArrayList<>();
+    private Set<Role> roles = new TreeSet<>();
 
-    public List<Role> getRoles() {
-        return roles.stream().collect(Collectors.toList());
+    public Set<Role> getRoles() {
+        return roles;
     }
 }
