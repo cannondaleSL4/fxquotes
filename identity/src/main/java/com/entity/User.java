@@ -5,7 +5,9 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by dima on 21.01.18.
@@ -30,10 +32,11 @@ public class User {
     String password;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="rolename")
-    private final List<Role> roles = new ArrayList<>();
+    //@JoinTable(name="rolename" , joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "id_role"))
+    @JoinColumn(name="idRole", referencedColumnName = "id_role")
+    private Collection<Role> roles = new ArrayList<>();
 
     public List<Role> getRoles() {
-        return roles;
+        return roles.stream().collect(Collectors.toList());
     }
 }

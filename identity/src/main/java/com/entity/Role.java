@@ -21,7 +21,7 @@ public class Role implements GrantedAuthority, Comparable<Role> {
 
     @Id
     @GeneratedValue
-    private Integer id_role;
+    private Integer idRole;
 
     @Column(name = "rolename")
     private String role;
