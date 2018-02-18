@@ -1,4 +1,4 @@
-package com.entity;
+package com.model.user;
 
 import lombok.*;
 import org.codehaus.jackson.annotate.JsonTypeInfo;

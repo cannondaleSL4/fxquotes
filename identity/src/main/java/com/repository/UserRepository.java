@@ -1,11 +1,15 @@
 package com.repository;
 
 
-import com.entity.User;
-import org.springframework.data.repository.CrudRepository;
+import com.model.user.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
 
 /**
  * Created by dima on 21.01.18.
  */
-//@Repository
-public interface UserRepository extends CrudRepository<User, Integer> {}
+public interface UserRepository extends JpaRepository<User, Integer> {
+    Optional<User> findOneByUserId(String userId);
+    Optional<User> findOneUserByUserIdAndPassword(String userId, String password);
+}

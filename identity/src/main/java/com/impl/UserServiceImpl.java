@@ -1,9 +1,9 @@
 package com.impl;
 
-import com.entity.User;
+import com.model.user.User;
 import com.google.common.collect.Lists;
 import com.repository.UserRepository;
-import com.service.UserService;
+import com.controller.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.webconfig;
 
-import com.entity.User;
+import com.model.user.User;
 import com.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
