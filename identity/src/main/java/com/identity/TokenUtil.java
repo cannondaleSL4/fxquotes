@@ -42,9 +42,9 @@ public class TokenUtil {
             .getBody();
 
         User user = new User();
-        user.setUserId( (String)claims.get("userId"));
+        user.setId( (Integer) claims.get("userId"));
         user.setRole(Role.valueOf((String)claims.get("role")));
-        if (user.getUserId() != null && user.getRole() != null) {
+        if (user.getId() != null && user.getRoles() != null) {
             return new TokenUser(user);
         } else {
             return null;
