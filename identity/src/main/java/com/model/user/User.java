@@ -1,5 +1,6 @@
 package com.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
@@ -29,6 +30,9 @@ public class User {
     @Column(name = "password")
     String password;
 
+    @JsonIgnore
+    @Getter @Setter private boolean isActive;
+
     @OneToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name = "USER_ROLE",
@@ -39,5 +43,11 @@ public class User {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public void setRole(String role){
+        roles.add(new Role.RoleBuilder()
+                .role(role)
+                .build());
     }
 }
