@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
 
   // otherwise redirect to profile
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/user' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

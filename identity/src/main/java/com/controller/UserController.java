@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 public class UserController {
-    //@RequestMapping("/login")
 
     @Autowired
     private UserService userService;
@@ -49,5 +48,8 @@ public class UserController {
             userResponce.setOperationStatus(OperationResponse.ResponseStatusEnum.NO_ACCESS);
             userResponce.setOperationMessage("NO ACCESS");
         }
+
+        userResponce.setUser(user);
+        return userResponce;
     }
 }
