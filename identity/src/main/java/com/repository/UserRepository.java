@@ -10,6 +10,6 @@ import java.util.Optional;
  * Created by dima on 21.01.18.
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
-    Optional<User> findOneByUserId(String userId);
-    Optional<User> findOneUserByUserIdAndPassword(String userId, String password);
+    Optional<User> findOneById(String userId);
+    Optional<User> findOneUserByIdAndPassword(String userId, String password);
 }

@@ -31,6 +31,6 @@ public class UserService {
     }
 
     public User getUserInfoUserId(String userId){
-        return userRepository.findOneByUserId(userId).orElseGet( () -> new User());
+        return userRepository.findOneById(userId).orElseGet( () -> new User());
     }
 }
