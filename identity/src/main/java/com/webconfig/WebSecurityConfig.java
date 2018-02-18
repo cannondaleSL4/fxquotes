@@ -1,7 +1,7 @@
 package com.webconfig;
 
 import com.model.user.User;
-import com.impl.UserServiceImpl;
+import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -22,14 +22,14 @@ import java.util.stream.Collectors;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserServiceImpl userService;
+    UserRepository userRepository;
 
     @Autowired
     private CustomSuccessHandler customSuccessHandler;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        List<User> userList = userService.findAll();
+        List<User> userList = userRepository.findAll();
 
         userList.forEach(K ->{
             try {
