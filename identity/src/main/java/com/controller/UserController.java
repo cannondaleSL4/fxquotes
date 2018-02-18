@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "user", method = RequestMethod.GET, produces = {"application/json"})
+    @RequestMapping(value = "/user", method = RequestMethod.GET, produces = {"application/json"})
     public UserResponce getUserInformation(@RequestParam(value = "name",required = false) String userIdParam, HttpServletRequest request){
         String loggedUserid = userService.getLoggedUserId();
 
