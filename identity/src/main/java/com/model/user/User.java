@@ -31,7 +31,9 @@ public class User {
     String password;
 
     @JsonIgnore
-    @Getter @Setter private boolean isActive;
+    @Setter
+    @Column(name= "is_active")
+    private boolean isActive;
 
     @OneToMany(fetch=FetchType.EAGER)
     @JoinTable(
