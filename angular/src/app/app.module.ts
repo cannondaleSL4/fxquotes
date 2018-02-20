@@ -20,6 +20,8 @@ import {UrlPermission} from "./urlPermission/url.permission";
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+
+
   ],
   imports: [
     BrowserModule,HttpModule,FormsModule,routing, FacebookModule.forRoot(),

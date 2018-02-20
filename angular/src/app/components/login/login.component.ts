@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   // styleUrls: ['./login.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
   login(){
     this.authService.logIn(this.user)
       .subscribe(data=>{
-        this.router.navigate(['/profile']);
+          this.router.navigate(['/profile']);
         },err=>{
-        this.errorMessage="error :  Username or password is incorrect";
+          this.errorMessage="error :  Username or password is incorrect";
         }
       )
   }
