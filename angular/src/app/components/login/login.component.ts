@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-root',
   templateUrl: './login.component.html',
   // styleUrls: ['./login.component.css'],
   encapsulation: ViewEncapsulation.None
