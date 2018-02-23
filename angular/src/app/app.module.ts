@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import {FacebookModule} from "ngx-facebook";
 import { FormsModule } from '@angular/forms';
 import {HttpModule} from "@angular/http";
+import { RouterModule }     from '@angular/router';
 
-import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent         } from './home.component';
-import {routing} from "./app-routing.module";
+import {AppRoutingModule} from "./app-routing.module";
+import { AppComponent }       from './app.component';
 
 import { AppConfig } from './app-config';
 import { AuthGuard        } from './services/auth_guard.service';
@@ -23,7 +24,7 @@ import { ApiRequestService} from './services/api/api-request.service';
     HomeComponent,
   ],
   imports: [
-    BrowserModule,HttpModule,FormsModule,routing, FacebookModule.forRoot(),
+    BrowserModule,HttpModule,FormsModule,AppRoutingModule, FacebookModule.forRoot(),
   ],
   providers: [
     AppConfig,
