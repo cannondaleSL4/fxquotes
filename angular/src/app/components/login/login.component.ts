@@ -1,32 +1,55 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {User} from "../../model/model.user";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../services/api/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   // styleUrls: ['./login.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-  user: User=new User();
-  errorMessage:string;
-  constructor(private authService :AuthService, private router: Router) { }
-
-
+  model: any = {};
+  errMsg:string = '';
+  constructor(
+    private router: Router,
+    private loginService: LoginService) { }
 
   ngOnInit() {
+    // reset login status
+    this.loginService.logout(false);
   }
 
-  login(){
-    this.authService.logIn(this.user)
-      .subscribe(data=>{
-        this.router.navigate(['/profile']);
-        },err=>{
-        this.errorMessage="error :  Username or password is incorrect";
+  login() {
+    this.loginService.getToken(this.model.username, this.model.password)
+      .subscribe(resp => {
+          if (resp.user === undefined || resp.user.token === undefined || resp.user.token === "INVALID" ){
+            this.errMsg = 'Username or password is incorrect';
+            return;
+          }
+          this.router.navigate([resp.landingPage]);
+        },
+        errResponse => {
+          switch(errResponse.status){
+            case 401:
+              this.errMsg = 'Username or password is incorrect';
+              break;
+            case 404:
+              this.errMsg = 'Service not found';
+            case 408:
+              this.errMsg = 'Request Timedout';
+            case 500:
+              this.errMsg = 'Internal Server Error';
+            default:
+              this.errMsg = 'Server Error';
+          }
         }
-      )
+      );
   }
+
+  onSignUp(){
+    this.router.navigate(['signup']);
+  }
+
+
 }
