@@ -25,15 +25,9 @@ export class HomeComponent   {
         {
             label   : 'Dashboard',
             href    : '/home/dashboard',
-            subNav  : [
-                { label:"Order Stats"  , href:"/home/dashboard/order"  },
-                { label:"Product Stats", href:"/home/dashboard/product"}
-            ]
         },
-        { label: 'Orders'   , href: '/home/orders'    , subNav: []},
-        { label: 'Products' , href: '/home/products'  , subNav: []},
-        { label: 'Customers', href: '/home/customers' , subNav: []},
-        { label: 'Employees', href: '/home/employees' , subNav: []}
+        { label: 'Live Quotes'   , href: '/home/quotes'    , subNav: []},
+        { label: 'Historical Quotes' , href: '/home/history'  , subNav: []},
     ];
 
     public selectedHeaderItemIndex:number=0;

@@ -17,6 +17,7 @@ import { LoginService     } from './services/api/login.service';
 import { ApiRequestService} from './services/api/api-request.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import { ApiRequestService} from './services/api/api-request.service';
     AuthGuard,
     UserInfoService,
     LoginService,
-    ApiRequestService
+    ApiRequestService,
   ],
   bootstrap: [AppComponent]
 })
