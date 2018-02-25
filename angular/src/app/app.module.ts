@@ -17,12 +17,18 @@ import { LoginService     } from './services/api/login.service';
 import { ApiRequestService} from './services/api/api-request.service';
 
 
+import {LiveQuotes} from "./components/history/history.component";
+import {History} from "./components/quotes/live_quotes.component";
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    LiveQuotes,
+    History
   ],
   imports: [
     BrowserModule,HttpModule,FormsModule,AppRoutingModule, FacebookModule.forRoot(),

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import {LoginComponent} from "./components/login/login.component";
+import {LiveQuotes} from "./components/quotes/live_quotes.component";
 
 import { HomeComponent  }       from './home.component';
 
@@ -24,8 +25,8 @@ export const routes: Routes = [
         data     : [{selectedHeaderItemIndex:0, selectedSubNavItemIndex:-1}],
         children :[
           { path: ''        , redirectTo: '/home/dashboard/order', pathMatch: 'full'},
-          { path: 'order'   , component: OrderStatsComponent     , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:0}]  },
-          { path: 'product' , component: ProductStatsComponent   , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:1}]  }
+          { path: 'quoteslive'   , component: LiveQuotes     , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:0}]  },
+          { path: 'history' , component: ProductStatsComponent   , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:1}]  }
         ]
       },
       // { path:'orders'    , component: OrdersComponent      , data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}]  },
