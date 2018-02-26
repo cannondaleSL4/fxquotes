@@ -16,16 +16,16 @@ import { UserInfoService  } from './services/user-info.service';
 import { LoginService     } from './services/api/login.service';
 import { ApiRequestService} from './services/api/api-request.service';
 
-import {LiveQuotes} from "./components/history/history.component";
-import {History} from "./components/quotes/live_quotes.component";
-
-
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {History} from "./components/history/history.component";
+import {LiveQuotes} from "./components/quotes/live_quotes.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    DashboardComponent,
     LiveQuotes,
     History
   ],
