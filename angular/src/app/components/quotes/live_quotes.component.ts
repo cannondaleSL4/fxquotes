@@ -5,7 +5,7 @@ import 'rxjs/add/operator/mergeMap';
 
 @Component({
 	selector: 's-orders-pg',
-	templateUrl: './history.component.html'
+	templateUrl: './live_quotes.component.html'
 })
 
 export class LiveQuotes implements OnInit {
