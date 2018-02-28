@@ -13,19 +13,19 @@ import { PageNotFoundComponent }  from './components/404/page-not-found.componen
 import { AuthGuard } from './services/auth_guard.service';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home/dashboard/order', pathMatch: 'full' },
+  { path: '', redirectTo: '/home/dashboard', pathMatch: 'full' },
   {
     path: 'home',
     component: HomeComponent,
     canActivate:[AuthGuard],
     children:[  // Children paths are appended to the parent path
-      { path: '', redirectTo: '/home/dashboard/order', pathMatch: 'full', data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}] },  // Default path (if no deep path is specified for home component like webui/home then it will by default show ProductsComponent )
+      { path: '', redirectTo: '/home/dashboard', pathMatch: 'full', data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}] },  // Default path (if no deep path is specified for home component like webui/home then it will by default show ProductsComponent )
       {
         path     : 'dashboard',
         component: DashboardComponent,
         data     : [{selectedHeaderItemIndex:0, selectedSubNavItemIndex:-1}],
         children :[
-          { path: ''        , redirectTo: '/home/dashboard/order', pathMatch: 'full'},
+          { path: ''        , redirectTo: '/home/dashboard', pathMatch: 'full'},
           { path: 'quoteslive'   , component: LiveQuotes     , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:0}]  },
           { path: 'history' , component: History   , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:1}]  }
         ]

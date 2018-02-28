@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {FacebookModule} from "ngx-facebook";
 import { FormsModule } from '@angular/forms';
 import {HttpModule} from "@angular/http";
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { RouterModule }     from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
@@ -30,7 +31,12 @@ import {LiveQuotes} from "./components/quotes/live_quotes.component";
     History
   ],
   imports: [
-    BrowserModule,HttpModule,FormsModule,AppRoutingModule, FacebookModule.forRoot(),
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    AppRoutingModule,
+    FacebookModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
     AppConfig,
