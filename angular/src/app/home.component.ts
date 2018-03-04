@@ -26,8 +26,8 @@ export class HomeComponent   {
             label   : 'Dashboard',
             href    : '/home/dashboard',
         },
-        { label: 'Live Quotes'   , href: '/home/quotes'    , subNav: []},
-        { label: 'Historical Quotes' , href: '/home/history'  , subNav: []},
+        { label: 'Live Quotes'   , href: '/home/dashboard/quoteslive'    , subNav: []},
+        { label: 'Historical Quotes' , href: '/home/dashboard/history'  , subNav: []},
     ];
 
     public selectedHeaderItemIndex:number=0;
@@ -59,7 +59,7 @@ export class HomeComponent   {
     }
 
     navbarSelectionChange(val){
-        // console.log(val);
+        console.log(val);
     }
 
     closeAppAlert(){

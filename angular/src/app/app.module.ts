@@ -20,6 +20,8 @@ import { ApiRequestService} from './services/api/api-request.service';
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {History} from "./components/history/history.component";
 import {LiveQuotes} from "./components/quotes/live_quotes.component";
+import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {LiveQuotes} from "./components/quotes/live_quotes.component";
     HomeComponent,
     DashboardComponent,
     LiveQuotes,
-    History
+    History,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

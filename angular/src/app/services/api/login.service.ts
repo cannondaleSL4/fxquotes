@@ -15,7 +15,7 @@ export interface LoginRequestParam{
 @Injectable()
 export class LoginService {
 
-    public landingPage:string = "/home/dashboard/order";
+    public landingPage:string = "/home/dashboard/quoteslive";
     constructor(
         private router:Router,
         private userInfoService: UserInfoService,
@@ -30,18 +30,9 @@ export class LoginService {
             "username": username,
             "password": password,
         }
-        /*
-            Using BehaviorSubject instead of Subject
-            In Angular services are initialized before the components, if any component is
-            subscribing, it will only receive events which are executed after subscription.
-            therefore if you put a syncronize next() in the service, the component wont get it.
 
-            A BehaviourSubject will always provide the values wheather the subscription happened after or before event
-
-        */
-
-        let loginDataSubject:BehaviorSubject<any> = new BehaviorSubject<any>([]); // Will use this BehaviorSubject to emit data that we want after ajax login attempt
-        let loginInfoReturn:LoginInfoInStorage; // Object that we want to send back to Login Page
+        let loginDataSubject:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+        let loginInfoReturn:LoginInfoInStorage;
 
         this.apiRequest.post('session', bodyData)
             .subscribe(jsonResp => {
