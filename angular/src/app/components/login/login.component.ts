@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       .subscribe(resp => {
           if (resp.user === undefined || resp.user.token === undefined || resp.user.token === "INVALID" ){
             this.errMsg = 'Username or password is incorrect';
-            console.log("user or password is incorrect");
+            console.log("user or password is incorrect " + this.model.username + " " + this.model.password);
             return;
           }
           console.log("user and password is correct");
