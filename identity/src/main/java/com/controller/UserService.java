@@ -1,17 +1,18 @@
 package com.controller;
 
-import com.model.user.MyUserPrincipal;
+import com.identity.TokenUser;
 import com.model.user.User;
 import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Created by dima on 21.01.18.
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
+    private final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();
 
     String getLoggedUserId(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -41,8 +43,15 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findOneUserByEmail(email);
-        return new MyUserPrincipal(user.get());
+    public TokenUser loadUserByUsername(String email) throws UsernameNotFoundException {
+        final User user = userRepository.findOneUserByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        TokenUser currentUser;
+        if (user.isActive() == true){
+            currentUser = new TokenUser(user);
+        } else {
+            throw new DisabledException("User is not activated (Disabled User)");
+        }
+        detailsChecker.check(currentUser);
+        return currentUser;
     }
 }
