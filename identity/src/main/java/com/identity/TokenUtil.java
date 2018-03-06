@@ -58,7 +58,7 @@ public class TokenUtil {
     public String createTokenForUser(User user) {
       return Jwts.builder()
         .setExpiration(new Date(System.currentTimeMillis() + VALIDITY_TIME_MS))
-        .setSubject(user.getEmail())
+        .setSubject(user.getName())
         .claim("userId", user.getId())
         .claim("role", user.getRoles().toString())
         .signWith(SignatureAlgorithm.HS256, secret)

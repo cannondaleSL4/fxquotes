@@ -44,7 +44,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public TokenUser loadUserByUsername(String email) throws UsernameNotFoundException {
-        final User user = userRepository.findOneUserByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        final User user = userRepository.findOneUserByName(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         TokenUser currentUser;
         if (user.isActive() == true){
             currentUser = new TokenUser(user);

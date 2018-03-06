@@ -30,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    private CustomSuccessHandler customSuccessHandler;
+//    @Autowired
+//    private CustomSuccessHandler customSuccessHandler;
 
     @Autowired
     UserService userService;
@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private void setAuthority(AuthenticationManagerBuilder auth,User user){
         try {
             auth.inMemoryAuthentication()
-                    .withUser(user.getEmail())
+                    .withUser(user.getName())
                     .password(user.getPassword())
                     .authorities(user.getRoles().stream().collect(Collectors.toList()));
         } catch (Exception e) {

@@ -73,7 +73,7 @@ public class GenerateTokenForUserFilter extends AbstractAuthenticationProcessing
         jsonResp.put("token",newToken);
         jsonResp.put("firstName",tokenUser.getUser().getFirstName());
         jsonResp.put("lastName",tokenUser.getUser().getLastName());
-        jsonResp.put("email",tokenUser.getUser().getEmail());
+        jsonResp.put("name",tokenUser.getUser().getName());
         jsonResp.put("role",tokenUser.getRole());
         */
 
@@ -84,7 +84,7 @@ public class GenerateTokenForUserFilter extends AbstractAuthenticationProcessing
         String tokenString = this.tokenUtil.createTokenForUser(tokenUser);
 
         respItem.setUserId(tokenUser.getUser().getId());
-        respItem.setEmail(tokenUser.getUser().getEmail());
+        respItem.setEmail(tokenUser.getUser().getName());
         respItem.setToken(tokenString);
 
         resp.setOperationStatus(OperationResponse.ResponseStatusEnum.SUCCESS);
