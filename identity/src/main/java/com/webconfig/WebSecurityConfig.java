@@ -3,16 +3,18 @@ package com.webconfig;
 import com.controller.UserService;
 import com.identity.TokenUtil;
 import com.model.user.User;
-import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 
 /*
  * Created by  dima on 29.12.17.
+ * http://websystique.com/spring-security/spring-security-4-password-encoder-bcrypt-example-with-hibernate/
  */
 @Configuration
 @EnableWebSecurity
@@ -28,34 +31,47 @@ import java.util.stream.Collectors;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserRepository userRepository;
-
-//    @Autowired
-//    private CustomSuccessHandler customSuccessHandler;
-
-    @Autowired
     UserService userService;
 
     @Autowired
     private TokenUtil tokenUtil;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
-        List<User> userList = userRepository.findAll();
-        userList.stream().forEach(u -> setAuthority(auth, u));
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
-    private void setAuthority(AuthenticationManagerBuilder auth,User user){
-        try {
-            auth.inMemoryAuthentication()
-                    .withUser(user.getName())
-                    .password(user.getPassword())
-                    .authorities(user.getRoles().stream().collect(Collectors.toList()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService);
+        auth.authenticationProvider(authenticationProvider());
     }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
+    }
+
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+//        List<User> userList = userService.findAll();
+//        userList.stream().forEach(u -> setAuthority(auth, u));
+//    }
+//
+//    private void setAuthority(AuthenticationManagerBuilder auth,User user){
+//        try {
+//            auth.inMemoryAuthentication()
+//                    .withUser(user.getName())
+//                    .password(user.getPassword())
+//                    .authorities(user.getRoles().stream().collect(Collectors.toList()));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void configure(WebSecurity web) throws Exception{
         // Filters will not get executed for the resources
