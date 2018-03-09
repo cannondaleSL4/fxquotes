@@ -21,7 +21,17 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+      "./assets/js/jquery/jquery.js",
+      "./assets/bootstrap/js/bootstrap.bundle.min.js",
+      "./assets/js/jquery-easing/jquery.easing.min.js",
+      "./assets/js/chart.js/Chart.min.js",
+      "./assets/js/jquery.dataTables.js",
+      "./assets/js/dataTables.bootstrap4.js",
+      "./assets/js/sb-admin.js",
+      "./assets/js/sb-admin-datatables.js",
+      "./assets/js/sb-admin-charts.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
