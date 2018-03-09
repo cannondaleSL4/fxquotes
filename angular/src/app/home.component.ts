@@ -1,4 +1,7 @@
-import {Component, ViewEncapsulation, ViewChild, OnInit, Renderer} from '@angular/core';
+import {
+  Component, ViewEncapsulation, ViewChild, OnInit, Renderer, Injectable,
+  ComponentFactoryResolver, OnDestroy, AfterViewInit
+} from '@angular/core';
 import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
 
 import { LoginService   } from './services/api/login.service';
@@ -8,9 +11,6 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 
 @Component({
   selector   : 'home-comp',
@@ -18,7 +18,8 @@ import { Observer } from 'rxjs/Observer';
   styleUrls  : ['./home.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent   {
+
+export class HomeComponent implements OnInit, OnDestroy {
 
     public showAppAlert:boolean = false;
     public appHeaderItems=[
@@ -35,13 +36,11 @@ export class HomeComponent   {
     public userName: string="";
 
     constructor(
-        private renderer: Renderer,
         private router:Router,
         private activeRoute:ActivatedRoute,
         private loginService:LoginService,
         private userInfoService:UserInfoService
     ) {
-        //this.renderer.setElementClass(document.body, 'fixed-nav sticky-footer bg-dark', true);
         // This block is to retrieve the data from the routes (routes are defined in app-routing.module.ts)
         router.events
         .filter(event => event instanceof NavigationEnd)
@@ -57,15 +56,14 @@ export class HomeComponent   {
             this.selectedSubNavItemIndex = data[0]?data[0].selectedSubNavItemIndex:-1;
         });
         this.userName = this.userInfoService.getUserName();
-
     }
 
-    navbarSelectionChange(val){
-        console.log(val);
-    }
-
-    closeAppAlert(){
-        this.showAppAlert=false;
-    }
-
+  ngOnInit(): void {
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.add('fixed-nav', 'sticky-footer','bg-dark');
+  }
+  ngOnDestroy() {
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('fixed-nav', 'sticky-footer','bg-dark');
+  }
 }
