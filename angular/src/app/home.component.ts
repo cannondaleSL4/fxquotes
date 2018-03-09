@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import {Component, ViewEncapsulation, ViewChild, OnInit, Renderer} from '@angular/core';
 import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
 
 import { LoginService   } from './services/api/login.service';
@@ -35,11 +35,13 @@ export class HomeComponent   {
     public userName: string="";
 
     constructor(
+        private renderer: Renderer,
         private router:Router,
         private activeRoute:ActivatedRoute,
         private loginService:LoginService,
         private userInfoService:UserInfoService
     ) {
+        //this.renderer.setElementClass(document.body, 'fixed-nav sticky-footer bg-dark', true);
         // This block is to retrieve the data from the routes (routes are defined in app-routing.module.ts)
         router.events
         .filter(event => event instanceof NavigationEnd)
