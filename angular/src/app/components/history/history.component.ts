@@ -1,9 +1,8 @@
-import { Component, OnInit,TemplateRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
-	selector: 's-orders-pg',
-	templateUrl: './history.component.html'
+	selector: 'history',
+	templateUrl: './history.component.html',
 })
 
 export class History implements OnInit {

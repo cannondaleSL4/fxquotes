@@ -4,12 +4,11 @@ import 'rxjs/add/operator/mergeMap';
 
 
 @Component({
-	selector: 's-orders-pg',
-	templateUrl: './live_quotes.component.html'
+	selector: 'live_quotes',
+	templateUrl: './live_quotes.component.html',
 })
 
 export class LiveQuotes implements OnInit {
-
     ngOnInit() {
 
     }

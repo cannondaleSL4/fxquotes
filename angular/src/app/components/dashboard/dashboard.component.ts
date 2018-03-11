@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
-	selector: 's-dashboard-pg',
+	selector: 'dashboard',
 	templateUrl: './dashboard.component.html',
-    styleUrls: [ './dashboard.scss'],
 })
 
 export class DashboardComponent {

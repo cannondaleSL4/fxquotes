@@ -1,10 +1,10 @@
-html,
-body {
+html.log,
+body.log {
   height: 100%;
   padding: 50px;
 }
 
-body {
+body.log {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;

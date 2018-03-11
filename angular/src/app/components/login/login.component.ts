@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, OnDestroy} from '@angular/core';
 import { LoginService } from '../../services/api/login.service';
 import { Router } from '@angular/router';
 
@@ -6,18 +6,22 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   model: any = {};
   errMsg:string = '';
   constructor(
     private router: Router,
     private loginService: LoginService) { }
 
-  ngOnInit() {
-    // reset login status
+  ngOnInit(): void {
     this.loginService.logout(false);
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.add('text-center', 'log');
+  }
+  ngOnDestroy() {
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('text-center', 'log');
   }
 
   login() {
@@ -52,6 +56,4 @@ export class LoginComponent implements OnInit {
   onSignUp(){
     this.router.navigate(['signup']);
   }
-
-
 }

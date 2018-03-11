@@ -13,25 +13,25 @@ import { HomeComponent  }       from './home.component';
 import { AuthGuard } from './services/auth_guard.service';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/home/dashboard/quoteslive', pathMatch: 'full' },
   {
     path: 'home',
     component: HomeComponent,
     canActivate:[AuthGuard],
     children:[  // Children paths are appended to the parent path
-      { path: '', redirectTo: '/home/dashboard', pathMatch: 'full', data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}] },  // Default path (if no deep path is specified for home component like webui/home then it will by default show ProductsComponent )
+      { path: '', redirectTo: '/home/dashboard/quoteslive', pathMatch: 'full', data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}] },  // Default path (if no deep path is specified for home component like webui/home then it will by default show ProductsComponent )
       {
         path     : 'dashboard',
         component: DashboardComponent,
         data     : [{selectedHeaderItemIndex:0, selectedSubNavItemIndex:-1}],
         children :[
-          { path: ''        , redirectTo: '/home/dashboard', pathMatch: 'full'},
+          { path: ''        , redirectTo: '/home/dashboard/quoteslive', pathMatch: 'full'},
           { path: 'quoteslive'   , component: LiveQuotes     , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:0}]  },
           { path: 'history' , component: History   , data:[{selectedHeaderItemIndex:0, selectedSubNavItemIndex:1}]  }
         ]
       },
-      // { path:'orders'    , component: OrdersComponent      , data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}]  },
-      // { path:'orders/:id', component: OrderDetailsComponent, data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}]  },
+      { path:'quoteslive'    , component: LiveQuotes      , data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}]  },
+      { path:'history', component: History, data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}]  },
       // { path:'products'  , component: ProductsComponent    , data:[{selectedHeaderItemIndex:2, selectedSubNavItemIndex:-1}]  },
       // { path:'customers' , component: CustomersComponent   , data:[{selectedHeaderItemIndex:3, selectedSubNavItemIndex:-1}]  },
       // { path:'employees' , component: EmployeesComponent   , data:[{selectedHeaderItemIndex:4, selectedSubNavItemIndex:-1}]  },

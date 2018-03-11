@@ -15,8 +15,8 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector   : 'home-comp',
   templateUrl: './home.component.html',
-  styleUrls  : ['./home.scss'],
-  encapsulation: ViewEncapsulation.None
+  // styleUrls  : ['./home.css'],
+  // encapsulation: ViewEncapsulation.None
 })
 
 export class HomeComponent implements OnInit, OnDestroy {
