@@ -55,24 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationProvider;
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
-//        List<User> userList = userService.findAll();
-//        userList.stream().forEach(u -> setAuthority(auth, u));
-//    }
-//
-//    private void setAuthority(AuthenticationManagerBuilder auth,User user){
-//        try {
-//            auth.inMemoryAuthentication()
-//                    .withUser(user.getName())
-//                    .password(user.getPassword())
-//                    .authorities(user.getRoles().stream().collect(Collectors.toList()));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void configure(WebSecurity web) throws Exception{
         // Filters will not get executed for the resources
         web.ignoring().antMatchers("/",
