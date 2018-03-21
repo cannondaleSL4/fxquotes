@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginService.getToken(this.model.username, this.model.password)
       .subscribe(resp => {
           if (resp.user === undefined || resp.user.token === undefined || resp.user.token === "INVALID" ){
-            this.errMsg = 'Username or password is incorrect';
+            // this.errMsg = 'Username or password is incorrect';
             console.log("user or password is incorrect " + this.model.username + " " + this.model.password);
             return;
           }
