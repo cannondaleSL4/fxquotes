@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: gateway
+
+zuul:
+  routes:
+    identity:
+      path: /identity/**
+      url: http://localhost:9099
+
+    request:
+      path: /request/**
+      url: http://localhost:9098
+      #stripPrefix: false
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
