@@ -24,8 +24,8 @@ public class RequestLiveQuotes extends RequestData<QuotesLive> {
 
     private Map<String, Object> mapResp = new HashMap<>();
 
-    private Map<String,Object> getLastForCurrentCurrency(String currency, String base, String name){
-        httpGet = new HttpGet(String.format(MAIN,base,name));
+    private Map<String,Object> getLastForCurrentCurrency(String currency, String base, String quote){
+        httpGet = new HttpGet(String.format(MAIN,base,quote));
         QuotesLive quotesLive = null;
         String messageError = "Server is not available";
         try(CloseableHttpResponse response =  httpClient.execute(httpGet)) {
@@ -37,7 +37,7 @@ public class RequestLiveQuotes extends RequestData<QuotesLive> {
                 }else{
                     quotesLive = quotesLive.builder()
                             .base(base)
-                            .name(name)
+                            .quote(quote)
                             .price(new BigDecimal(strPrice))
                             .localDateTime(LocalDateTime.now())
                             .build();
