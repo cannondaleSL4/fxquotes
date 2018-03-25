@@ -1,9 +1,9 @@
 server:
-  port: 9090
+  port: 9098
 
 spring:
   application:
-    name: gateway
+    name: request
 
 zuul:
   routes:
@@ -15,6 +15,9 @@ zuul:
       path: /request/**
       url: http://localhost:9098
       #stripPrefix: false
+
+currency:
+  main : http://currencies.apps.grandtrunk.net/getlatest/%s/%s
 
 #eureka:
 #  client:

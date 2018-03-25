@@ -2,7 +2,7 @@ package com.controller;
 
 import com.model.response.OperationResponse;
 import com.model.user.User;
-import com.model.user.UserResponce;
+import com.model.user.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET, produces = {"application/json"})
-    public UserResponce getUserInformation(@RequestParam(value = "name",required = false) String userIdParam, HttpServletRequest request){
+    public UserResponse getUserInformation(@RequestParam(value = "name",required = false) String userIdParam, HttpServletRequest request){
         String loggedUserid = userService.getLoggedUserId();
 
         User user;
@@ -40,16 +40,16 @@ public class UserController {
             user = userService.getUserInfoUserId(userIdParam);
         }
 
-        UserResponce userResponce = new UserResponce();
+        UserResponse userResponse = new UserResponse();
 
         if(provideUserDetails){
-            userResponce.setOperationStatus(OperationResponse.ResponseStatusEnum.SUCCESS);
+            userResponse.setOperationStatus(OperationResponse.ResponseStatusEnum.SUCCESS);
         } else {
-            userResponce.setOperationStatus(OperationResponse.ResponseStatusEnum.NO_ACCESS);
-            userResponce.setOperationMessage("NO ACCESS");
+            userResponse.setOperationStatus(OperationResponse.ResponseStatusEnum.NO_ACCESS);
+            userResponse.setOperationMessage("NO ACCESS");
         }
 
-        userResponce.setUser(user);
-        return userResponce;
+        userResponse.setUser(user);
+        return userResponse;
     }
 }

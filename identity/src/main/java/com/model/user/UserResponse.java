@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class UserResponce extends OperationResponse {
+public class UserResponse extends OperationResponse {
     private User user = new User();
 }
