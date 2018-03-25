@@ -1,0 +1,1 @@
+INSERT INTO QUOTES (id)  VALUES (1);

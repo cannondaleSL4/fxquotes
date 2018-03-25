@@ -1,14 +1,15 @@
-package com.dim.fxapp.entity.impl;
+package com.fxapp.entity.impl;
 
-import com.dim.fxapp.entity.FinancialEntity;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fxapp.entity.FinancialEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by dima on 28.11.17.
@@ -18,11 +19,10 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name ="Quotes")
+@Table(name ="QUOTES")
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
 public class Quotes extends FinancialEntity {
     @Id
-    @Column(name= "id")
     private Integer id;
 
 //    @Column(name="name", nullable = false)

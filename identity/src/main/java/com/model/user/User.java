@@ -1,8 +1,8 @@
 package com.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import javax.persistence.*;
 import java.util.Set;

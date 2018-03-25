@@ -1,10 +1,13 @@
 package com.model.user;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by dima on 21.01.18.
