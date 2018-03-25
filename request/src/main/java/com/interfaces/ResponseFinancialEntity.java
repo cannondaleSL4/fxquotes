@@ -1,7 +1,6 @@
 package com.interfaces;
 
-
-import com.fxapp.entity.FinancialEntity;
+import com.dim.fxapp.entity.FinancialEntity;
 
 /**
  * Created by dima on 24.03.18.

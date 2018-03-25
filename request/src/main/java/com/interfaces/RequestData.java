@@ -1,10 +1,7 @@
 package com.interfaces;
 
-//import com.dim.fxapp.entity.FinancialEntity;
-//import com.dim.fxapp.entity.enums.Currency;
-
-import com.fxapp.entity.FinancialEntity;
-import com.fxapp.entity.enums.Currency;
+import com.dim.fxapp.entity.FinancialEntity;
+import com.dim.fxapp.entity.enums.Currency;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;

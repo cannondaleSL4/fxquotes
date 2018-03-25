@@ -1,11 +1,9 @@
 package com.execute;
 
-//import com.dim.fxapp.entity.enums.Currency;
-
+import com.dim.fxapp.entity.enums.Currency;
+import com.dim.fxapp.entity.impl.QuotesLive;
 import com.exeption.ServerRequestExeption;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fxapp.entity.enums.Currency;
-import com.fxapp.entity.impl.QuotesLive;
 import com.interfaces.RequestData;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -20,11 +18,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-//import com.dim.fxapp.entity.impl.QuotesLive;
-
-/**
- * Created by dima on 24.03.18.
- */
 public class RequestLiveQuotes extends RequestData<QuotesLive> {
     @Value("${currency.main}")
     protected String MAIN;
