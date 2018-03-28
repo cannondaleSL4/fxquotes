@@ -21,6 +21,6 @@ java -jar ./gateway/target/*.jar \
    && java -jar ./request/target/*.jar
 
 #run angular
-#cd ./angular/
-#ng serve --open
+cd ./angular/
+ng serve --open
 
