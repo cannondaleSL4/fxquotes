@@ -9,6 +9,6 @@ export class QuotesService{
   getCurrentQuotes() {
     let me = this;
     let params: HttpParams = new HttpParams();
-    this.apiRequest.get('')
+    this.apiRequest.get('request/lq')
   }
 }
