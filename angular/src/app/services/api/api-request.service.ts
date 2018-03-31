@@ -52,27 +52,27 @@ export class ApiRequestService {
                 return Observable.throw(error || 'Server error')
             });
     }
-
-    put(url:string, body:Object):Observable<any>{
-        let me = this;
-        return this.http.put(this.appConfig.baseApiPath + url, JSON.stringify(body), { headers:this.getHeaders()})
-            .catch(function(error:any){
-                if (error.status === 401){
-                    me.router.navigate(['/logout']);
-                }
-                return Observable.throw(error || 'Server error')
-            });
-    }
-
-    delete(url:string):Observable<any>{
-        let me = this;
-        return this.http.delete(this.appConfig.baseApiPath + url, { headers:this.getHeaders()})
-            .catch(function(error:any){
-                if (error.status === 401){
-                    me.router.navigate(['/logout']);
-                }
-                return Observable.throw(error || 'Server error')
-            });
-    }
+    //
+    // put(url:string, body:Object):Observable<any>{
+    //     let me = this;
+    //     return this.http.put(this.appConfig.baseApiPath + url, JSON.stringify(body), { headers:this.getHeaders()})
+    //         .catch(function(error:any){
+    //             if (error.status === 401){
+    //                 me.router.navigate(['/logout']);
+    //             }
+    //             return Observable.throw(error || 'Server error')
+    //         });
+    // }
+    //
+    // delete(url:string):Observable<any>{
+    //     let me = this;
+    //     return this.http.delete(this.appConfig.baseApiPath + url, { headers:this.getHeaders()})
+    //         .catch(function(error:any){
+    //             if (error.status === 401){
+    //                 me.router.navigate(['/logout']);
+    //             }
+    //             return Observable.throw(error || 'Server error')
+    //         });
+    // }
 
 }

@@ -16,10 +16,11 @@ import { AuthGuard        } from './services/auth_guard.service';
 import { UserInfoService  } from './services/user-info.service';
 import { LoginService     } from './services/api/login.service';
 import { ApiRequestService} from './services/api/api-request.service';
+import { LiveQuotesService} from './services/api/livequotes.service';
 
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {History} from "./components/history/history.component";
-import {LiveQuotes} from "./components/quotes/live_quotes.component";
+import {LiveQuotes} from "./components/livequotes/livequotes.component";
 import { LogoutComponent } from './components/logout/logout.component';
 
 
@@ -46,6 +47,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     AuthGuard,
     UserInfoService,
     LoginService,
+    LiveQuotesService,
     ApiRequestService,
   ],
   bootstrap: [AppComponent]
