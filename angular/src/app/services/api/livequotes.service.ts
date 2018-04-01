@@ -1,6 +1,6 @@
 import { ApiRequestService } from './api-request.service';
 import {Observable, Subject} from "rxjs";
-import {LiveQuotesInterfase} from "../livequotesinterface";
+import {LiveQuotesInterface} from "../livequotesinterface";
 import {Injectable} from "@angular/core";
 
 @Injectable()
@@ -9,13 +9,8 @@ export class LiveQuotesService{
     private apiRequest: ApiRequestService,
 ){}
 
-  getLiveQuotes(): Observable<LiveQuotesInterfase[]> {
-    return this.apiRequest.get('request/lq').map(data=>{
-      let liveQuotesList = data["liveQuotesList"];
-      return liveQuotesList.map(function(quotes:any) {
-        return {quote: quotes.quote, base: quotes.base, price: quotes.price};
-      });
-    });
+  getLiveQuotes(): Observable<LiveQuotesInterface[]> {
+    return this.apiRequest.get('request/lq')
+      .map(response => response.json() as LiveQuotesInterface[])
   }
-
 }

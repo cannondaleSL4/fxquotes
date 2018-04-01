@@ -1,6 +1,6 @@
 import {BigNumber} from 'bignumber.js';
 
-export interface LiveQuotesInterfase {
+export interface LiveQuotesInterface {
   quote: string;
   base: string;
   price: BigNumber;

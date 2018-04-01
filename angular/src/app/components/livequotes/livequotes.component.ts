@@ -2,6 +2,7 @@ import { Component, OnInit,TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/mergeMap';
 import {LiveQuotesService} from "../../services/api/livequotes.service";
+import {LiveQuotesInterface} from "../../services/livequotesinterface";
 
 
 @Component({
@@ -10,8 +11,7 @@ import {LiveQuotesService} from "../../services/api/livequotes.service";
 })
 
 export class LiveQuotes implements OnInit {
-  columns:any[];
-  rows:any[];
+  _postsArray: LiveQuotesInterface[];
   constructor(private router: Router, private liveQuotes: LiveQuotesService){}
 
   ngOnInit() {
@@ -19,8 +19,11 @@ export class LiveQuotes implements OnInit {
     me.getPageData();
   }
 
-  getPageData() {
+  getPageData(): void {
     var me = this;
-    return me.liveQuotes.getLiveQuotes();
+    me.liveQuotes.getLiveQuotes().subscribe(
+      resultArray => this._postsArray = resultArray,
+      error => console.log("Error :: " + error)
+    );
   }
 }

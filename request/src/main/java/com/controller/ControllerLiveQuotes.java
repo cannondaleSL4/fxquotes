@@ -26,7 +26,7 @@ public class ControllerLiveQuotes {
     @RequestMapping(value="/lq", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> getLastLiveQuotes(){
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
+                .cacheControl(CacheControl.maxAge(180, TimeUnit.SECONDS))
                 .body(liveQuotes.getRequest());
     }
 

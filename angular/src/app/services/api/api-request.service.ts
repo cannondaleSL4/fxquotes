@@ -5,6 +5,7 @@ import { Observable} from 'rxjs';
 import 'rxjs/add/operator/catch';
 import { UserInfoService, LoginInfoInStorage} from '../user-info.service';
 import { AppConfig } from '../../app-config';
+import {LiveQuotes} from "../../components/livequotes/livequotes.component";
 
 
 @Injectable()
@@ -32,8 +33,10 @@ export class ApiRequestService {
 
     get(url:string, urlParams?:HttpParams):Observable<any>{
         let me = this;
-        return this.http.get(this.appConfig.baseApiPath + url, {headers:this.getHeaders(),  params:urlParams} )
+      console.log(this.getHeaders());
+        return this.http.get(this.appConfig.baseApiPath + url, {headers:this.getHeaders(),  params:urlParams})
             .catch(function(error:any){
+                // console.log("header " + );
                 console.log("Some error in catch");
                 if (error.status === 401 || error.status === 403){
                     me.router.navigate(['/logout']);
