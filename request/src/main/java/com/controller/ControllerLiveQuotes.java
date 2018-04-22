@@ -22,7 +22,6 @@ public class ControllerLiveQuotes {
     @Qualifier("LiveQuotes")
     private RequestData liveQuotes;
 
-    //lq - it's live quotes
     @RequestMapping(value="/lq", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> getLastLiveQuotes(){
         return ResponseEntity.ok()
