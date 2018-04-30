@@ -5,7 +5,7 @@ import { Observable} from 'rxjs';
 import 'rxjs/add/operator/catch';
 import { UserInfoService, LoginInfoInStorage} from '../user-info.service';
 import { AppConfig } from '../../app-config';
-import {LiveQuotes} from "../../components/livequotes/livequotes.component";
+// import {FreeQuotes} from "../../components/freequotes/freequotes.component";
 
 
 @Injectable()
@@ -15,7 +15,8 @@ export class ApiRequestService {
         private appConfig:AppConfig,
         private http: HttpClient,
         private router:Router,
-        private userInfoService:UserInfoService
+        private userInfoService:UserInfoService,
+        // private freequotes:FreeQuotes
     ) {}
 
     /**
@@ -25,6 +26,13 @@ export class ApiRequestService {
         let headers = new HttpHeaders();
         let token = this.userInfoService.getStoredToken();
         headers = headers.append('Content-Type', 'application/json');
+
+        // this is mine block
+        headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Access-Control-Allow-Origin', '*');
+
+
         if (token !== null) {
             headers = headers.append("Authorization", token);
         }
@@ -55,27 +63,4 @@ export class ApiRequestService {
                 return Observable.throw(error || 'Server error')
             });
     }
-    //
-    // put(url:string, body:Object):Observable<any>{
-    //     let me = this;
-    //     return this.http.put(this.appConfig.baseApiPath + url, JSON.stringify(body), { headers:this.getHeaders()})
-    //         .catch(function(error:any){
-    //             if (error.status === 401){
-    //                 me.router.navigate(['/logout']);
-    //             }
-    //             return Observable.throw(error || 'Server error')
-    //         });
-    // }
-    //
-    // delete(url:string):Observable<any>{
-    //     let me = this;
-    //     return this.http.delete(this.appConfig.baseApiPath + url, { headers:this.getHeaders()})
-    //         .catch(function(error:any){
-    //             if (error.status === 401){
-    //                 me.router.navigate(['/logout']);
-    //             }
-    //             return Observable.throw(error || 'Server error')
-    //         });
-    // }
-
 }

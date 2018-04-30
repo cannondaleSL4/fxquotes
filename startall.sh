@@ -3,8 +3,8 @@
 chmod +x ./stop.sh
 ./stop.sh
 
-mvn clean package
-#ng build --prod
+#mvn clean package
+ng build --prod
 
 chmod +x ./gateway/target/gateway-1.0-SNAPSHOT.jar
 chmod +x ./identity/target/identity-1.0-SNAPSHOT.jar
