@@ -16,12 +16,9 @@ import { HomeComponent  }       from './home.component';
 import { AuthGuard } from './services/auth_guard.service';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/start', pathMatch: 'full' },
-  { path: 'start' , component: StartComponent},
-  { path: 'login' , component: LoginComponent       , data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] },
-  { path: 'logout', component: LogoutComponent      , data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] },
-  { path: 'dashboard', redirectTo: '/home/dashboard/quoteslive', pathMatch: 'full' },
-  { path: '**'    , component: PageNotFoundComponent, data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] },
+  { path: '', component: StartComponent},
+  // { path: '', redirectTo: '/home/dashboard/quoteslive', pathMatch: 'full' },
+  // { path: 'start' , component: StartComponent},
   {
     path: 'home',
     component: HomeComponent,
@@ -40,11 +37,10 @@ export const routes: Routes = [
       },
       { path:'quoteslive'    , component: LiveQuotes      , data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}]  },
       { path:'history', component: History, data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}]  },
-      // { path:'products'  , component: ProductsComponent    , data:[{selectedHeaderItemIndex:2, selectedSubNavItemIndex:-1}]  },
-      // { path:'customers' , component: CustomersComponent   , data:[{selectedHeaderItemIndex:3, selectedSubNavItemIndex:-1}]  },
-      // { path:'employees' , component: EmployeesComponent   , data:[{selectedHeaderItemIndex:4, selectedSubNavItemIndex:-1}]  },
     ]
-  }
+  },
+  { path: 'logout', component: LogoutComponent      , data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] },
+  { path: '**'    , component: PageNotFoundComponent, data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes, {useHash:true} )],

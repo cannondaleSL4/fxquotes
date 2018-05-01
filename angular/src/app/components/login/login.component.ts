@@ -1,13 +1,17 @@
-import {Component, OnInit, ViewEncapsulation, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { LoginService } from '../../services/api/login.service';
 import { Router } from '@angular/router';
+import {ViewEncapsulation} from '@angular/core';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  encapsulation: ViewEncapsulation.None
+
 })
-export class LoginComponent implements OnInit, OnDestroy {
+
+ export class LoginComponent implements OnInit{
   model: any = {};
   errMsg:string = '';
   constructor(
@@ -16,20 +20,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loginService.logout(false);
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('text-center', 'log');
-  }
-  ngOnDestroy() {
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.remove('text-center', 'log');
   }
 
   login() {
     this.loginService.getToken(this.model.username, this.model.password)
       .subscribe(resp => {
           if (resp.user === undefined || resp.user.token === undefined || resp.user.token === "INVALID" ){
-            // this.errMsg = 'Username or password is incorrect';
-            console.log("user or password is incorrect " + this.model.username + " " + this.model.password);
             return;
           }
           console.log("user and password is correct");
