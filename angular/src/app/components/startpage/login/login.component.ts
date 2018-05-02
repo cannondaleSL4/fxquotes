@@ -1,12 +1,12 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import { LoginService } from '../../services/api/login.service';
+import {Component, OnInit} from '@angular/core';
+import { LoginService } from '../../../services/api/login.service';
 import { Router } from '@angular/router';
 import {ViewEncapsulation} from '@angular/core';
 
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  templateUrl: 'login.component.html',
   encapsulation: ViewEncapsulation.None
 
 })
@@ -48,8 +48,8 @@ import {ViewEncapsulation} from '@angular/core';
         }
       );
   }
-  //
-  // onSignUp(){
-  //   this.router.navigate(['signup']);
-  // }
+
+  onSignUp(){
+    this.router.navigate(['signup']);
+  }
 }

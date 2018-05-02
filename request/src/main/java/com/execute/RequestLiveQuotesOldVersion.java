@@ -15,19 +15,27 @@ import org.springframework.beans.factory.annotation.Value;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class RequestLiveQuotes extends RequestData<QuotesLive> {
-    @Value("${currency.main}")
+public class RequestLiveQuotesOldVersion extends RequestData<QuotesLive> {
+    @Value("${currency.oldlivequotes}")
     protected String MAIN;
 
-    private Map<String, Object> mapResp = new HashMap<>();
+    public Map<String,Object> getRequest(){
+        localResp.clear();
+        mapResp.clear();
+        for(Currency currency: currencySet){
+            getLastForCurrentCurrency(
+                    currency.toString(),
+                    currency.toString().substring(0,3),
+                    currency.toString().substring(3));
+        }
+        return mapResp;
+    }
 
     private Map<String,Object> getLastForCurrentCurrency(String currency, String base, String quote){
         httpGet = new HttpGet(String.format(MAIN,base,quote));
         QuotesLive quotesLive = null;
-        String messageError = "Server is not available";
         try(CloseableHttpResponse response =  httpClient.execute(httpGet)) {
             if(response.getStatusLine().getStatusCode()==200){
                 HttpEntity entity = response.getEntity();
@@ -36,12 +44,11 @@ public class RequestLiveQuotes extends RequestData<QuotesLive> {
                     throw new ServerRequestExeption(messageError);
                 }else{
                     quotesLive = quotesLive.builder()
-                            .base(base)
-                            .quote(quote)
+                            .name(currency)
                             .price(new BigDecimal(strPrice))
                             .localDateTime(LocalDateTime.now())
                             .build();
-                    mapResp.put(currency,quotesLive);
+                    super.localResp.add(quotesLive);
                 }
             }else{
                 throw new ServerRequestExeption(messageError);
@@ -51,19 +58,11 @@ public class RequestLiveQuotes extends RequestData<QuotesLive> {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServerRequestExeption serverRequestExeption) {
-            mapResp.put("error",messageError);
             serverRequestExeption.printStackTrace();
+            mapResp.put("error",messageError);
+            return mapResp;
         }
-        return mapResp;
-    }
-
-    public Map<String,Object> getRequest(){
-        for(Currency currency: currencySet){
-            getLastForCurrentCurrency(
-                    currency.toString(),
-                    currency.toString().substring(0,3),
-                    currency.toString().substring(3));
-        }
+        mapResp.put("successful",localResp);
         return mapResp;
     }
 }

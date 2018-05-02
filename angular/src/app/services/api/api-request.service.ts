@@ -27,12 +27,6 @@ export class ApiRequestService {
         let token = this.userInfoService.getStoredToken();
         headers = headers.append('Content-Type', 'application/json');
 
-        // this is mine block
-        headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        headers.append('Access-Control-Allow-Methods', 'GET');
-        headers.append('Access-Control-Allow-Origin', '*');
-
-
         if (token !== null) {
             headers = headers.append("Authorization", token);
         }

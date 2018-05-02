@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
-import { UserInfoService, LoginInfoInStorage} from '../../services/user-info.service';
+import { UserInfoService, LoginInfoInStorage} from '../../../services/user-info.service';
 
 @Component({
 	selector   : 's-logout-pg',
-	templateUrl: './logout.component.html',
-    styleUrls  : [ './logout.scss'],
+	templateUrl: 'logout.component.html',
+    styleUrls  : [ 'logout.scss'],
 })
 
 export class LogoutComponent {

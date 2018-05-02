@@ -1,6 +1,7 @@
 package com;
 
-import com.execute.RequestLiveQuotes;
+import com.execute.RequestLiveQuotesFinam;
+import com.execute.RequestLiveQuotesOldVersion;
 import com.interfaces.RequestData;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,8 +16,13 @@ public class RequestApplication {
         SpringApplication.run(RequestApplication.class, args) ;
     }
 
-    @Bean("LiveQuotes")
-    public RequestData getLiveQuotes(){
-        return new RequestLiveQuotes();
+    @Bean("LiveQuotesOldVersion")
+    public RequestData getLiveQuotesOldVersion(){
+        return new RequestLiveQuotesOldVersion();
+    }
+
+    @Bean("LiveQuotesFinam")
+    public RequestData getLiveQuotesFinam(){
+        return new RequestLiveQuotesFinam();
     }
 }

@@ -5,7 +5,8 @@ import {Component} from '@angular/core';
   templateUrl: 'signup.component.html',
 })
 export class SignUp {
-  signup(){
-
-  }
+  // signup(){
+  //
+  // }
+  errMsg: String;
 }

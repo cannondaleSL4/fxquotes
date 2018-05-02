@@ -2,17 +2,17 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
-import {LoginComponent} from "./components/login/login.component";
+import {LoginComponent} from "./components/startpage/login/login.component";
 import {LiveQuotes} from "./components/livequotes/livequotes.component";
-import {FreeQuotes} from "./components/freequotes/freequotes.component";
+import {LiveQuotesStartPage} from "./components/startpage/livequotes/livequotes.component";
 
 import {History} from "./components/history/history.component";
 import { PageNotFoundComponent }  from './components/404/page-not-found.component';
-import { LogoutComponent } from './components/logout/logout.component';
+import { LogoutComponent } from './components/startpage/logout/logout.component';
 
 import { StartComponent } from './components/startpage/startpage.component';
 
-import { HomeComponent  }       from './home.component';
+import { HomeComponent  } from './home.component';
 import { AuthGuard } from './services/auth_guard.service';
 
 export const routes: Routes = [

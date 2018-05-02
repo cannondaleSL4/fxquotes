@@ -5,20 +5,33 @@ spring:
   application:
     name: request
 
-zuul:
-  routes:
-    identity:
-      path: /identity/**
-      url: http://localhost:9099
-
-    request:
-      path: /request/**
-      url: http://localhost:9098
-      #stripPrefix: false
+#zuul:
+#  routes:
+#    identity:
+#      path: /identity/**
+#      url: http://localhost:9099
+#
+#    request:
+#      path: /request/**
+#      url: http://localhost:9098
+#      #stripPrefix: false
 
 currency:
-  main : http://currencies.apps.grandtrunk.net/getlatest/%s/%s
 
+  oldlivequotes : http://currencies.apps.grandtrunk.net/getlatest/%s/%s
+  # здесь надо задать три параметра из них два последних это одинаковые - имя валютной пары EURUSD а первый параметр это em  код
+  livequotes:
+    http://export.finam.ru/filename.csv?market=5&em=%s&code=%s&apply=0&df=5&mf=4&yf=2018&from=05.05.2018&dt=5&mt=4&yt=2018&to=05.05.2018&p=8&f=filename&e=.csv&cn=%s&dtf=4&tmf=3&MSOR=1&mstimever=0&sep=1&sep2=2&datf=1&at=1&fsp=1
+#em - номер финансового инструмента (в нашем случае Газпром - 16842)
+#
+#df, mf, yf - день, месяц, год даты начиная с которой выдавать котировки
+#
+#dt, mt, yt - дата по которую выдаются котировки
+#
+#p - временной интервал (7 означает, что временной интервал 1 час)
+
+#livequotes: http://export.finam.ru/
+#  AUDCAD_180505_180505.csv?market=5&em=181410&code=AUDCAD&apply=0&df=5&mf=4&yf=2018&from=05.05.2018&dt=5&mt=4&yt=2018&to=05.05.2018&p=7&f=AUDCAD_180505_180505&e=.csv&cn=AUDCAD&dtf=4&tmf=3&MSOR=1&mstimever=0&sep=1&sep2=1&datf=1&at=1&fsp=1
 #eureka:
 #  client:
 #    serviceUrl:
