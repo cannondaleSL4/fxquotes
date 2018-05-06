@@ -5,7 +5,7 @@ import {ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'modal-login',
-  styleUrls: ['./modal.css'],
+  styleUrls: ['modal.css'],
   templateUrl: 'modal.component.html',
   encapsulation: ViewEncapsulation.None
 })

@@ -19,14 +19,13 @@ import java.util.concurrent.TimeUnit;
 public class ControllerLiveQuotes {
 
     @Autowired
-    @Qualifier("LiveQuotes")
-    private RequestData liveQuotes;
+    @Qualifier("LiveQuotesOldVersion")
+    private RequestData liveQuotesFinam;
 
     @RequestMapping(value="/lq", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> getLastLiveQuotes(){
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.maxAge(180, TimeUnit.SECONDS))
-                .body(liveQuotes.getRequest());
+                .cacheControl(CacheControl.maxAge(600, TimeUnit.SECONDS))
+                .body(liveQuotesFinam.getRequest());
     }
-
 }

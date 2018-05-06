@@ -18,9 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 public class QuotesLive extends FinancialEntity {
 
-    private String quote;
-
-    private String base;
+    private String name;
 
     private BigDecimal price;
 

@@ -10,8 +10,6 @@ zuul:
     identity:
       path: /identity/**
       url: http://localhost:9099
-#      sensitiveHeaders: Cookie,Set-Cookie
-#      stripPrefix: false
     request:
       path: /request/**
       url: http://localhost:9098
