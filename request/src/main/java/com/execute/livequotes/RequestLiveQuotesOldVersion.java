@@ -1,4 +1,4 @@
-package com.execute;
+package com.execute.livequotes;
 
 import com.dim.fxapp.entity.enums.Currency;
 import com.dim.fxapp.entity.impl.QuotesLive;
