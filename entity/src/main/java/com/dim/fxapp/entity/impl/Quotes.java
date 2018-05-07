@@ -30,8 +30,8 @@ public class Quotes extends FinancialEntity {
     @Column(name= "id")
     private Integer id;
 
-    @Column(name="currencyname", nullable = false)
-    private String currencyname;
+    @Column(name="currency", nullable = false)
+    private String currency;
 
     @Column(name="period", nullable = false)
     @Enumerated(EnumType.STRING)

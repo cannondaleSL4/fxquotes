@@ -6,6 +6,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 /**
@@ -17,6 +18,5 @@ public abstract class RequestData<F extends FinancialEntity> {
     protected Map<String, Object> mapResp = new HashMap<>();
     protected Set<FinancialEntity> localResp = new HashSet<>();
     protected HttpGet httpGet;
-    protected Set<Currency> currencySet = new HashSet<Currency>(Arrays.asList(Currency.values()));
-    public abstract Map<String,Object> getRequest(String ...param);
+    public abstract Map<String,Object> getRequest(Set<CriteriaBuilder>criteriaBuilders);
 }

@@ -13,6 +13,7 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import util.RoundOfNumber;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -21,10 +22,11 @@ public class RequestLiveQuotesOldVersion extends RequestData<QuotesLive> {
     @Value("${currency.oldlivequotes}")
     protected String MAIN;
 
-    public Map<String,Object> getRequest(){
+    @Override
+    public Map<String,Object> getRequest(Set<CriteriaBuilder>criteriaBuilders){
         localResp.clear();
         mapResp.clear();
-        for(Currency currency: currencySet){
+        for(Currency currency: listOfCurrency){
             getLastForCurrentCurrency(
                     currency.toString(),
                     currency.toString().substring(0,3),
@@ -44,7 +46,7 @@ public class RequestLiveQuotesOldVersion extends RequestData<QuotesLive> {
                     throw new ServerRequestExeption(messageError);
                 }else{
                     quotesLive = quotesLive.builder()
-                            .name(currency)
+                            .currency(currency)
                             .price(RoundOfNumber.round(strPrice))
                             .localDateTime(LocalDateTime.now())
                             .build();

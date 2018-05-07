@@ -17,13 +17,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 
@@ -36,10 +39,17 @@ public class RequestLiveQuotesFinam extends RequestData<QuotesLive> {
     protected String MAIN;
 
     @Override
-    public Map<String, Object> getRequest() {
+    public Map<String, Object> getRequest(Set<CriteriaBuilder> criteriaBuilders) {
         mapResp.clear();
+        Set<CriteriaBuilder> setOfbuilders = new HashSet<>(criteriaBuilders);
         try{
-            for(Currency currency: currencySet){
+            setOfbuilders.forEach(CriteriaBuilder ->{
+
+            });
+
+
+
+            for(Currency currency: listOfCurrency){
                 String curStr = currency.toString();
                 getLastForCurrentCurrency(Currency.getByCurrensy(curStr),curStr);
             }
@@ -87,7 +97,7 @@ public class RequestLiveQuotesFinam extends RequestData<QuotesLive> {
         String [] strArray = line.split(",");
         if (strArray.length != 0){
             QuotesLive quotesLive = QuotesLive.builder()
-                    .name(strArray[0])
+                    .currency(strArray[0])
                     .price(new BigDecimal(strArray[7]))
                     .localDateTime(LocalDateTime.now())
                     .build();
