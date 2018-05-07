@@ -11,9 +11,9 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
+import util.RoundOfNumber;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -45,7 +45,7 @@ public class RequestLiveQuotesOldVersion extends RequestData<QuotesLive> {
                 }else{
                     quotesLive = quotesLive.builder()
                             .name(currency)
-                            .price(new BigDecimal(strPrice))
+                            .price(RoundOfNumber.round(strPrice))
                             .localDateTime(LocalDateTime.now())
                             .build();
                     super.localResp.add(quotesLive);
