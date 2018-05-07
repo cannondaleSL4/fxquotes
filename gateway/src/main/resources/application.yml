@@ -13,6 +13,10 @@ zuul:
     request:
       path: /request/**
       url: http://localhost:9098
+    persist:
+      path: /persist/**
+      url: http://localhost:9097
+
 
 #eureka:
 #  client:
