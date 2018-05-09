@@ -1,6 +1,6 @@
 package com.execute.livequotes;
 
-import com.dim.fxapp.entity.enums.Currency;
+import com.dim.fxapp.entity.criteria.QuotesCriteriaBuilder;
 import com.dim.fxapp.entity.impl.QuotesLive;
 import com.exeption.ServerRequestExeption;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +13,7 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import util.RoundOfNumber;
 
-import javax.persistence.criteria.CriteriaBuilder;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -23,19 +23,19 @@ public class RequestLiveQuotesOldVersion extends RequestData<QuotesLive> {
     protected String MAIN;
 
     @Override
-    public Map<String,Object> getRequest(Set<CriteriaBuilder>criteriaBuilders){
+    public Map<String,Object> getRequest(Set<QuotesCriteriaBuilder> quotesCriteriaBuilders){
         localResp.clear();
         mapResp.clear();
-        for(Currency currency: listOfCurrency){
-            getLastForCurrentCurrency(
-                    currency.toString(),
-                    currency.toString().substring(0,3),
-                    currency.toString().substring(3));
-        }
+        quotesCriteriaBuilders.forEach(quotesCriteriaBuilder -> {
+            getLastForCurrentCurrency(quotesCriteriaBuilder.getCurrency().toString());
+                }
+        );
         return mapResp;
     }
 
-    private Map<String,Object> getLastForCurrentCurrency(String currency, String base, String quote){
+    private Map<String,Object> getLastForCurrentCurrency(String currencyStr){
+        String base = currencyStr.substring(0,3);
+        String quote = currencyStr.substring(3);
         httpGet = new HttpGet(String.format(MAIN,base,quote));
         QuotesLive quotesLive = null;
         try(CloseableHttpResponse response =  httpClient.execute(httpGet)) {
@@ -46,7 +46,7 @@ public class RequestLiveQuotesOldVersion extends RequestData<QuotesLive> {
                     throw new ServerRequestExeption(messageError);
                 }else{
                     quotesLive = quotesLive.builder()
-                            .currency(currency)
+                            .currency(currencyStr)
                             .price(RoundOfNumber.round(strPrice))
                             .localDateTime(LocalDateTime.now())
                             .build();

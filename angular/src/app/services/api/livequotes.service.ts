@@ -14,11 +14,10 @@ export class LiveQuotesService {
   constructor (protected httpClient: HttpClient, private appConfig:AppConfig) { }
 
   getLiveQuotes(): Observable<LiveQuotes[]>{
-    return this.httpClient
-      .get(this.pathToSources).map(response => {
+    return this.httpClient.get(this.pathToSources).map(response => {
         let quoteList = response["successful"];
         return quoteList.map(function(livequote:any){
-          return {name: livequote.name, price: livequote.price }
+          return {name: livequote.currency, price: livequote.price }
         });
       })
   }

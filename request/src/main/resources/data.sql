@@ -1,1 +1,0 @@
-INSERT INTO QUOTES (currencyname,date, period,open,close,hight,low)  VALUES ('AUDUSD',parsedatetime('2018-03-25 21:08','yyyy-MM-dd HH:mm'),'FIVEMINUTES', 1.2225,1.2235,1.12,1.05);

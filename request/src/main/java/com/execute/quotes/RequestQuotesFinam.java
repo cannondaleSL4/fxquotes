@@ -1,7 +1,9 @@
 package com.execute.quotes;
 
+import com.dim.fxapp.entity.criteria.QuotesCriteriaBuilder;
 import com.dim.fxapp.entity.impl.QuotesLive;
 import com.interfaces.RequestData;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Map;
@@ -12,8 +14,11 @@ import java.util.Set;
  */
 public class RequestQuotesFinam extends RequestData<QuotesLive> {
 
+    @Value("${currency.quotes}")
+    protected String MAIN;
+
     @Override
-    public Map<String, Object> getRequest(Set<CriteriaBuilder> criteriaBuilders) {
+    public Map<String, Object> getRequest(Set<QuotesCriteriaBuilder> criteriaBuilders) {
         return null;
     }
 }

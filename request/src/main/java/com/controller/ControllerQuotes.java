@@ -1,9 +1,19 @@
 package com.controller;
 
+import com.dim.fxapp.entity.criteria.QuotesCriteriaBuilder;
+import com.dim.fxapp.entity.enums.Currency;
 import com.interfaces.RequestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.CacheControl;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by dima on 07.05.18.
@@ -11,6 +21,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ControllerQuotes {
     @Autowired
-    @Qualifier("LiveQuotesOldVersion")
-    private RequestData liveQuotesFinam;
+    @Qualifier("Quotes")
+    private RequestData quotes;
+
+    public List<Currency> listOfCurrency = new ArrayList<>(Arrays.asList(Currency.values()));
+    public Set<QuotesCriteriaBuilder> quotesCriteriaBuilders = new HashSet<>();
+
+    @RequestMapping(value="/quotes", method = RequestMethod.GET)
+    public ResponseEntity<Map<String, Object>> reload(){
+
+        LocalDate from = LocalDate.now().minusDays(10);
+        LocalDate to = LocalDate.now();
+
+
+        List<Currency> listOfCurrency = new ArrayList<>(Arrays.asList(Currency.values()));
+        Set<QuotesCriteriaBuilder> quotesCriteriaBuilders = new HashSet<>();
+
+        listOfCurrency.forEach(currency ->{
+            QuotesCriteriaBuilder quotesCriteriaBuilder = QuotesCriteriaBuilder.builder()
+                    .currency(currency)
+                    .from(from)
+                    .to(to)
+                    .build();
+            quotesCriteriaBuilders.add(quotesCriteriaBuilder);
+        });
+        return ResponseEntity.ok()
+                .cacheControl(CacheControl.maxAge(600, TimeUnit.SECONDS))
+                .body(quotes.getRequest(quotesCriteriaBuilders));
+    }
+
+//    @RequestMapping(value="/quotes/{from}/{to}", method = RequestMethod.GET)
+//    public ResponseEntity<Map<String, Object>> reloadByDates(){
+//
+//    }
 }

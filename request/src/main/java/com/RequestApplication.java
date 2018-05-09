@@ -2,6 +2,7 @@ package com;
 
 import com.execute.livequotes.RequestLiveQuotesFinam;
 import com.execute.livequotes.RequestLiveQuotesOldVersion;
+import com.execute.quotes.RequestQuotesFinam;
 import com.interfaces.RequestData;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,8 +22,13 @@ public class RequestApplication {
         return new RequestLiveQuotesOldVersion();
     }
 
-    @Bean("LiveQuotesFinam")
-    public RequestData getLiveQuotesFinam(){
-        return new RequestLiveQuotesFinam();
+    @Bean("Quotes")
+    public RequestData getQuotes(){
+        return new RequestQuotesFinam();
     }
+
+//    @Bean("LiveQuotesFinam")
+//    public RequestData getLiveQuotesFinam(){
+//        return new RequestLiveQuotesFinam();
+//    }
 }

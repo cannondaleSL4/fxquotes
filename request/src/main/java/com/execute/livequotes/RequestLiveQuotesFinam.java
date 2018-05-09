@@ -1,30 +1,22 @@
 package com.execute.livequotes;
 
-import com.dim.fxapp.entity.enums.Currency;
+import com.dim.fxapp.entity.criteria.QuotesCriteriaBuilder;
 import com.dim.fxapp.entity.impl.QuotesLive;
 import com.exeption.ServerRequestExeption;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.interfaces.RequestData;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -39,41 +31,36 @@ public class RequestLiveQuotesFinam extends RequestData<QuotesLive> {
     protected String MAIN;
 
     @Override
-    public Map<String, Object> getRequest(Set<CriteriaBuilder> criteriaBuilders) {
+    public Map<String, Object> getRequest(Set<QuotesCriteriaBuilder> quotesCriteriaBuilders) {
         mapResp.clear();
-        Set<CriteriaBuilder> setOfbuilders = new HashSet<>(criteriaBuilders);
-        try{
-            setOfbuilders.forEach(CriteriaBuilder ->{
-
-            });
-
-
-
-            for(Currency currency: listOfCurrency){
-                String curStr = currency.toString();
-                getLastForCurrentCurrency(Currency.getByCurrensy(curStr),curStr);
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ServerRequestExeption serverRequestExeption) {
-            serverRequestExeption.printStackTrace();
-        } catch (Exception e){
-            mapResp.put("error",messageError);
-            return mapResp;
+        quotesCriteriaBuilders.forEach(quotesCriteriaBuilder -> {
+                    String currencyStr = quotesCriteriaBuilder.getCurrency().toString();
+                    Integer number = quotesCriteriaBuilder.getCurrency().getByCurrensy(currencyStr);
+                    try {
+                        getLastForCurrentCurrency(currencyStr, number);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ServerRequestExeption serverRequestExeption) {
+                        serverRequestExeption.printStackTrace();
+                    } catch (Exception e) {
+                        mapResp.put("error", messageError);
+                    }
+                }
+        );
+        if (mapResp.isEmpty()) {
+            mapResp.put("successful", localResp);
         }
-        mapResp.put("successful",localResp);
         return mapResp;
     }
 
-    private void getLastForCurrentCurrency(Integer code,String currency) throws InterruptedException, IOException, ServerRequestExeption {
+    private void getLastForCurrentCurrency(String currency,Integer code) throws InterruptedException, IOException, ServerRequestExeption {
         String str = "";
         str = String.format(MAIN,code,currency,currency);
         httpGet = new HttpGet(String.format(MAIN,code,currency,currency));
         QuotesLive quotesLive = null;
         CloseableHttpClient client = HttpClientBuilder.create().build();
-//        TimeUnit.SECONDS.sleep(1);//should sleep for finam server
         TimeUnit.NANOSECONDS.sleep(700000000);
         httpGet.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36");
         HttpResponse response = client.execute(httpGet);

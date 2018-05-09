@@ -1,6 +1,7 @@
 package com.interfaces;
 
 import com.dim.fxapp.entity.FinancialEntity;
+import com.dim.fxapp.entity.criteria.QuotesCriteriaBuilder;
 import com.dim.fxapp.entity.enums.Currency;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -18,5 +19,5 @@ public abstract class RequestData<F extends FinancialEntity> {
     protected Map<String, Object> mapResp = new HashMap<>();
     protected Set<FinancialEntity> localResp = new HashSet<>();
     protected HttpGet httpGet;
-    public abstract Map<String,Object> getRequest(Set<CriteriaBuilder>criteriaBuilders);
+    public abstract Map<String,Object> getRequest(Set<QuotesCriteriaBuilder>criteriaBuilders);
 }

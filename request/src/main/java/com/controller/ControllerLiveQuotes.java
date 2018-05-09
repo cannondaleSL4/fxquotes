@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.dim.fxapp.entity.criteria.CriteriaBuilder;
+import com.dim.fxapp.entity.criteria.QuotesCriteriaBuilder;
 import com.dim.fxapp.entity.enums.Currency;
 import com.interfaces.RequestData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +25,20 @@ public class ControllerLiveQuotes {
     @Qualifier("LiveQuotesOldVersion")
     private RequestData liveQuotesFinam;
 
-    private List<Currency> listOfCurrency = new ArrayList<>(Arrays.asList(Currency.values()));
-    private Set<CriteriaBuilder>criteriaBuilders = new HashSet<>();
-
     @RequestMapping(value="/lq", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> getLastLiveQuotes(){
-        Set<CriteriaBuilder> criteriaBuilders = new HashSet<>();
+        List<Currency> listOfCurrency = new ArrayList<>(Arrays.asList(Currency.values()));
+        Set<QuotesCriteriaBuilder> quotesCriteriaBuilders = new HashSet<>();
 
         listOfCurrency.forEach(currency ->{
-            CriteriaBuilder criteriaBuilder = CriteriaBuilder.builder()
+            QuotesCriteriaBuilder quotesCriteriaBuilder = QuotesCriteriaBuilder.builder()
                     .currency(currency)
                     .build();
-            criteriaBuilders.add(criteriaBuilder);
+            quotesCriteriaBuilders.add(quotesCriteriaBuilder);
         });
 
         return ResponseEntity.ok()
                 .cacheControl(CacheControl.maxAge(600, TimeUnit.SECONDS))
-                .body(liveQuotesFinam.getRequest(criteriaBuilders));
+                .body(liveQuotesFinam.getRequest(quotesCriteriaBuilders));
     }
 }
