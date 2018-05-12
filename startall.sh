@@ -5,10 +5,12 @@ chmod +x ./stop.sh
 
 mvn clean package
 
+chmod +x ./eureka//target/eureka-1.0-SNAPSHOT.jar
 chmod +x ./gateway/target/gateway-1.0-SNAPSHOT.jar
 chmod +x ./identity/target/identity-1.0-SNAPSHOT.jar
 chmod +x ./request/target/request-1.0-SNAPSHOT.jar
 
+nohup java -jar ./eureka//target/*.jar &
 nohup java -jar ./gateway/target/*.jar &
 nohup java -jar ./identity/target/*.jar &
 nohup java -jar ./request/target/*.jar &
