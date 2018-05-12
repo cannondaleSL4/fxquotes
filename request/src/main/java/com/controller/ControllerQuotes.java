@@ -3,6 +3,7 @@ package com.controller;
 import com.dim.fxapp.entity.criteria.QuotesCriteriaBuilder;
 import com.dim.fxapp.entity.enums.Currency;
 import com.interfaces.RequestData;
+import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.CacheControl;
@@ -55,7 +56,7 @@ public class ControllerQuotes {
         });
 
         quotesCriteriaBuilders.forEach(quotesCriteriaBuilder -> {
-            restTemplate.execute()
+            //restTemplate.execute()
         });
 
 
