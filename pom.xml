@@ -23,5 +23,6 @@
         <module>gateway</module>
         <module>request</module>
         <module>persist</module>
+        <module>eureka</module>
     </modules>
 </project>

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -21,6 +22,13 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping(value = "/quotes")
 public class ControllerQuotes {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private EurekaClient eurekaClient;
+
     @Autowired
     @Qualifier("Quotes")
     private RequestData quotes;
@@ -29,7 +37,7 @@ public class ControllerQuotes {
     public Set<QuotesCriteriaBuilder> quotesCriteriaBuilders = new HashSet<>();
 
     @RequestMapping(value="/reload", method = RequestMethod.GET)
-    public ResponseEntity<Map<String, Object>> reload(){
+    public void reload(){
 
         LocalDate from = LocalDate.now().minusDays(10);
         LocalDate to = LocalDate.now();
@@ -46,9 +54,13 @@ public class ControllerQuotes {
             quotesCriteriaBuilders.add(quotesCriteriaBuilder);
         });
 
+        quotesCriteriaBuilders.forEach(quotesCriteriaBuilder -> {
+            restTemplate.execute()
+        });
 
-        return ResponseEntity.ok()
-                .cacheControl(CacheControl.maxAge(600, TimeUnit.SECONDS))
-                .body(quotes.getRequest(quotesCriteriaBuilders));
+
+//        return ResponseEntity.ok()
+//                .cacheControl(CacheControl.maxAge(600, TimeUnit.SECONDS))
+//                .body(quotes.getRequest(quotesCriteriaBuilders));
     }
 }
