@@ -3,8 +3,7 @@ package com.dim.fxapp.entity.impl;
 import com.dim.fxapp.entity.FinancialEntity;
 import com.dim.fxapp.entity.converter.LocalDateTimeConverter;
 import com.dim.fxapp.entity.enums.Period;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,11 +22,19 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name ="Quotes")
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
-public class Quotes extends FinancialEntity {
+@Table(name ="quotes")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.IntSequenceGenerator.class,
+//        property = "oid"
+//)
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+//        include = JsonTypeInfo.As.PROPERTY,
+//        property = "@class")
+public class Quotes implements FinancialEntity{
     @Id
-    @Column(name= "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
+    @JsonIgnore
     private Integer id;
 
     @Column(name="currency", nullable = false)
@@ -37,7 +44,7 @@ public class Quotes extends FinancialEntity {
     @Enumerated(EnumType.STRING)
     private Period period;
 
-    @Column(name = "date")
+    @Column(name = "data", nullable = false)
     @JsonFormat
         (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @Convert(converter = LocalDateTimeConverter.class)
@@ -49,10 +56,9 @@ public class Quotes extends FinancialEntity {
     @Column(name="close", nullable = false)
     private BigDecimal close;
 
-    @Column(name="hight", nullable = false)
-    private BigDecimal hight;
+    @Column(name="high", nullable = false)
+    private BigDecimal high;
 
     @Column(name="low", nullable = false)
     private BigDecimal low;
-
 }

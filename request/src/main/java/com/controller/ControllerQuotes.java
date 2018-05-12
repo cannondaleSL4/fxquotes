@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * Created by dima on 07.05.18.
  */
 @RestController
+@RequestMapping(value = "/quotes")
 public class ControllerQuotes {
     @Autowired
     @Qualifier("Quotes")
@@ -27,12 +28,11 @@ public class ControllerQuotes {
     public List<Currency> listOfCurrency = new ArrayList<>(Arrays.asList(Currency.values()));
     public Set<QuotesCriteriaBuilder> quotesCriteriaBuilders = new HashSet<>();
 
-    @RequestMapping(value="/quotes", method = RequestMethod.GET)
+    @RequestMapping(value="/reload", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> reload(){
 
         LocalDate from = LocalDate.now().minusDays(10);
         LocalDate to = LocalDate.now();
-
 
         List<Currency> listOfCurrency = new ArrayList<>(Arrays.asList(Currency.values()));
         Set<QuotesCriteriaBuilder> quotesCriteriaBuilders = new HashSet<>();
@@ -45,13 +45,10 @@ public class ControllerQuotes {
                     .build();
             quotesCriteriaBuilders.add(quotesCriteriaBuilder);
         });
+
+
         return ResponseEntity.ok()
                 .cacheControl(CacheControl.maxAge(600, TimeUnit.SECONDS))
                 .body(quotes.getRequest(quotesCriteriaBuilders));
     }
-
-//    @RequestMapping(value="/quotes/{from}/{to}", method = RequestMethod.GET)
-//    public ResponseEntity<Map<String, Object>> reloadByDates(){
-//
-//    }
 }

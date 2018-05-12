@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-public class QuotesLive extends FinancialEntity {
+public class QuotesLive implements FinancialEntity {
 
     private String currency;
 
