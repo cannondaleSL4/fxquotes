@@ -5,6 +5,11 @@ spring:
   application:
     name: persist
 
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:8761/eureka/
+
 
 #security:
 #  oauth2:
@@ -18,8 +23,3 @@ spring:
 #      clientAuthenticationScheme: form
 #    resource:
 #      userInfoUri: https://graph.facebook.com/me
-
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://127.0.0.1:8761/eureka/
