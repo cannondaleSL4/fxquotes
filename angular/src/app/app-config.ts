@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 
 export class AppConfig{
-  public dateFormat     = { year:'numeric', month: 'short', day: 'numeric'};
+  public dateFormat = { year:'numeric', month: 'short', day: 'numeric'};
 
   public version:string = "1.0.0";
   public locale:string  = "en-US";
-  public apiPort:string = "9090";
+  public apiPort:string = "8761";
   public apiProtocol:string;
   public apiHostName:string;
   public baseApiPath:string;
