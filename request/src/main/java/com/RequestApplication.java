@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by dima on 21.01.18.
@@ -28,8 +29,7 @@ public class RequestApplication {
         return new RequestQuotesFinam();
     }
 
-//    @Bean("LiveQuotesFinam")
-//    public RequestData getLiveQuotesFinam(){
-//        return new RequestLiveQuotesFinam();
-//    }
+    @Bean
+    public RestTemplate getRestTemplate(){return new RestTemplate();}
+
 }

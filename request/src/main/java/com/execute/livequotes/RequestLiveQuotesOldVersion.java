@@ -11,7 +11,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
-import util.RoundOfNumber;
+import com.util.RoundOfNumber;
 
 
 import java.io.IOException;

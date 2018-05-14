@@ -10,7 +10,7 @@ export class AppConfig{
 
   public version:string = "1.0.0";
   public locale:string  = "en-US";
-  public apiPort:string = "8761";
+  public apiPort:string = "8762";
   public apiProtocol:string;
   public apiHostName:string;
   public baseApiPath:string;
