@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by dima on 21.01.18.
@@ -24,6 +21,7 @@ public class Role implements GrantedAuthority, Comparable<Role> {
 
     @Id
     @Column(name= "id_role")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idRole;
 
     @Column(name = "rolename")

@@ -22,6 +22,7 @@ import java.util.TreeSet;
 public class User {
     @Id
     @Column(name= "id_user")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "email")
