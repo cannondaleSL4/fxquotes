@@ -3,13 +3,14 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<artifactId>identity</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
 	<parent>
 		<artifactId>fxquotes</artifactId>
 		<groupId>com.dima</groupId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>identity</artifactId>
-	<version>1.0-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
@@ -75,29 +76,30 @@
 			<version>20171018</version>
 		</dependency>
 		<!--пришлось добавить эти две депенденси в ручную и закоментить репо - это аффектило h2 базу-->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-commons</artifactId>
-			<version>2.0.0.RC1</version>
-		</dependency>
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Finchley.RC1</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<!--<dependencyManagement>-->
+		<!--<dependencies>-->
+			<!--<dependency>-->
+				<!--<groupId>org.springframework.cloud</groupId>-->
+				<!--<artifactId>spring-cloud-dependencies</artifactId>-->
+				<!--<version>Finchley.RC1</version>-->
+				<!--<type>pom</type>-->
+				<!--<scope>import</scope>-->
+			<!--</dependency>-->
+		<!--</dependencies>-->
+	<!--</dependencyManagement>-->
+
+	<!--<repositories>-->
+		<!--<repository>-->
+			<!--<id>spring-milestones</id>-->
+			<!--<name>Spring Milestones</name>-->
+			<!--<url>https://repo.spring.io/libs-milestone</url>-->
+			<!--<snapshots>-->
+			<!--<enabled>false</enabled>-->
+			<!--</snapshots>-->
+		<!--</repository>-->
+	<!--</repositories>-->
 
 	<build>
 		<plugins>
@@ -115,14 +117,4 @@
 		</plugins>
 	</build>
 
-	<!--<repositories>-->
-		<!--<repository>-->
-			<!--<id>spring-milestones</id>-->
-			<!--<name>Spring Milestones</name>-->
-			<!--<url>https://repo.spring.io/libs-milestone</url>-->
-			<!--<snapshots>-->
-				<!--<enabled>false</enabled>-->
-			<!--</snapshots>-->
-		<!--</repository>-->
-	<!--</repositories>-->
 </project>
